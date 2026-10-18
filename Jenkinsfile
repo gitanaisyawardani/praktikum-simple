@@ -11,10 +11,10 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build') {
+    stage('Build & Test Database') {
       steps {
-        echo 'Mulai build aplikasi'
-        bat 'echo "Build selesai"'
+        echo 'Menguji konektivitas dan insialisasi SQLite Database...'
+        bat 'python -c "import sqlite3; conn = sqlite3.connect(\'test.db\'); print(\'Database SQLite Berhasil Terkoneksi!\')"'
       }
     }
     stage('Build Docker Image') {
